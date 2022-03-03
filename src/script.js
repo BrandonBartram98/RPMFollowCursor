@@ -5,6 +5,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js'
+import Stats from 'three/examples/jsm/libs/stats.module.js'
+
+const container = document.getElementById( 'container' )
+const stats = new Stats()
+container.appendChild( stats.dom )
 
 let raycaster, Intersected
 let avatarModel
@@ -199,17 +204,17 @@ const tick = () =>
     const parallaxY = - pointer.y * 0.5
 
     if (hasLoaded) {
-        avatarHead.rotation.y += ((parallaxX / 2) - avatarHead.rotation.y) * 2 * deltaTime
-        avatarHead.rotation.x += (( parallaxY / 2 ) - avatarHead.rotation.x) * 2 * deltaTime
+        avatarHead.rotation.y += ((parallaxX / 1.5) - avatarHead.rotation.y) * 2 * deltaTime
+        avatarHead.rotation.x += (( parallaxY / 1.5 ) - avatarHead.rotation.x) * 2 * deltaTime
 
-        avatarSpine.rotation.y += ((parallaxX / 2) - avatarSpine.rotation.y) * 2 * deltaTime
-        avatarSpine.rotation.x += (( parallaxY / 2 ) - avatarSpine.rotation.x) * 2 * deltaTime
+        avatarSpine.rotation.y += ((parallaxX / 4) - avatarSpine.rotation.y) * 2 * deltaTime
+        avatarSpine.rotation.x += (( parallaxY / 4 ) - avatarSpine.rotation.x) * 2 * deltaTime
 
-        avatarLeftEye.rotation.y += ((parallaxX / 1.5) - avatarLeftEye.rotation.y) * 2 * deltaTime
-        avatarLeftEye.rotation.x += (( parallaxY / 1.5 ) - avatarLeftEye.rotation.x) * 2 * deltaTime
+        avatarLeftEye.rotation.y += ((parallaxX / 1.5) - avatarLeftEye.rotation.y) * 8 * deltaTime
+        avatarLeftEye.rotation.x += (( parallaxY / 1.5 ) - avatarLeftEye.rotation.x) * 8 * deltaTime
 
-        avatarRightEye.rotation.y += ((parallaxX / 1.5) - avatarRightEye.rotation.y) * 2 * deltaTime
-        avatarRightEye.rotation.x += (( parallaxY / 1.5) - avatarRightEye.rotation.x) * 2 * deltaTime
+        avatarRightEye.rotation.y += ((parallaxX / 1.5) - avatarRightEye.rotation.y) * 8 * deltaTime
+        avatarRightEye.rotation.x += (( parallaxY / 1.5) - avatarRightEye.rotation.x) * 8 * deltaTime
     }
 
     raycaster.setFromCamera( pointer, camera )
@@ -222,6 +227,9 @@ const tick = () =>
             console.log(instanceId)
         }
     }
+
+     // Stats
+     stats.update()
 
     // Render
     renderer.render(scene, camera)
