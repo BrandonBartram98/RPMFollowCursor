@@ -1,8 +1,8 @@
-# Three.js - Template - Simple
+# Three.js - Ready Player Me Testing
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
-Run this followed commands:
+Run the following commands:
 
 ``` bash
 # Install dependencies (only the first time)
