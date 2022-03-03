@@ -76,11 +76,18 @@ function onMouseMove(event)
 // const controls = new OrbitControls(camera, canvas)
 // controls.enableDamping = true
 
+const loadingElement = document.querySelector('.loading-screen')
 const loadingManager = new THREE.LoadingManager(
     // Loaded
     () =>
     {
         hasLoaded = true
+        // Wait a little
+        window.setTimeout(() =>
+        {
+            loadingElement.classList.add( 'fade-out' )
+        }, 200)
+        
     }
 )
 
